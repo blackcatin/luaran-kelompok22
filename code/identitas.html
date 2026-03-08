@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +22,8 @@
         body {
             background: #f4f7f6;
             color: #333;
+            overflow-x: hidden;
+            /* Mencegah scroll horizontal di HP */
         }
 
         /* --- HEADER --- */
@@ -41,6 +44,7 @@
             bottom: -50px;
             right: -20px;
             line-height: 1;
+            pointer-events: none;
         }
 
         .container {
@@ -50,9 +54,21 @@
             position: relative;
         }
 
+        /* Update pada bagian CSS utama Anda */
         .nav-mini {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            /* Tambahkan ini */
+            gap: 15px;
+            /* Tambahkan jarak antar elemen saat menumpuk */
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
             align-items: center;
         }
 
@@ -82,7 +98,8 @@
             color: #05503C;
             margin-top: 60px;
             margin-bottom: 80px;
-            font-size: 36px;
+            font-size: clamp(28px, 5vw, 36px);
+            /* Font adaptif */
             font-weight: bold;
         }
 
@@ -108,7 +125,8 @@
 
         .member-card {
             background: #f6f6f6;
-            border-radius: 80px;
+            border-radius: 40px;
+            /* Diperkecil sedikit agar lebih proporsional di mobile */
             padding: 30px 20px;
             text-align: center;
             color: #05503C;
@@ -126,23 +144,27 @@
         }
 
         .member-photo {
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            max-width: 200px;
+            /* Responsif mengikuti parent */
+            aspect-ratio: 1/1;
             margin: 0 auto 20px;
             border-radius: 15px;
             object-fit: cover;
+            display: block;
         }
 
         .member-card.pembimbing .member-photo {
-            width: 240px;
-            height: 240px;
+            max-width: 240px;
         }
 
         .member-card.pembimbing {
             background: var(--secondary);
             color: var(--primary);
-            margin-bottom: 40px;
-            width: 320px;
+            margin: 0 auto 40px;
+            /* Center secara otomatis */
+            width: 100%;
+            max-width: 350px;
             padding: 20px 20px 30px 20px;
         }
 
@@ -164,6 +186,7 @@
         .members-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            /* Default 3 kolom */
             gap: 30px;
         }
 
@@ -173,134 +196,20 @@
             margin-bottom: 40px;
         }
 
-        /* Animations */
+        /* --- ANIMATIONS --- */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), 0 0 20px rgba(5, 80, 60, 0);
-            }
-            50% {
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), 0 0 30px rgba(5, 80, 60, 0.3);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-        }
-
-        .fade-in.visible {
-            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        /* Floating effect */
-        .member-card.visible {
-            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        .member-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
-        }
-
-        .member-card.pembimbing:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(253, 202, 0, 0.2);
-        }
-
-        /* Ripple effect */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple 0.6s ease-out;
-            pointer-events: none;
-        }
-
-        /* Enhanced photo effect */
-        .member-photo {
-            transition: all 0.4s ease;
-            filter: brightness(1) saturate(1);
-            position: relative;
-            z-index: 10;
-        }
-
-        .member-card:hover .member-photo {
-            filter: brightness(1.15) saturate(1.3);
-        }
-
-        .member-card.pembimbing:hover .member-photo {
-            filter: brightness(1.15) saturate(1.3);
-        }
-
-        /* Member info styling */
-        .member-info {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .member-card:hover .member-info {
-            max-height: 200px;
-        }
-
-        .member-name {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            transition: 0.3s ease;
-        }
-
-        .member-role {
-            font-size: 16px;
-            opacity: 0;
-            transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            display: block;
-        }
-
-        .member-card:hover .member-role {
-            opacity: 0.75;
-        }
-
-        /* Cursor custom */
-        body {
-            cursor: auto;
-        }
-
+        /* --- FOOTER --- */
         .fat-footer {
             background: #1a1a1a;
             color: #d1d1d1;
@@ -389,61 +298,133 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.8rem;
+            flex-wrap: wrap;
+            /* Untuk HP */
+            gap: 10px;
         }
 
+        /* --- MEDIA QUERIES (RESPONSIVE) --- */
 
-        /* Tablet */
+        /* Tablet (Layar di bawah 1024px) */
         @media (max-width: 1024px) {
-            .grid {
+            .hero-content {
+                grid-template-columns: 1fr;
+                /* Teks & Stats menumpuk vertikal */
+                text-align: center;
+                gap: 30px;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* HP */
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr;
+        /* Mobile Besar (Layar di bawah 768px) */
+        @media (max-width: 768px) {
+            .identity-section {
+                padding: 30px 20px;
+                border-radius: 30px;
+                margin-top: -30px;
+                /* Menyesuaikan tumpukan header */
+            }
+
+            .page-title {
+                margin: 40px 0;
+                font-size: 28px;
             }
         }
 
-        @media (max-width: 992px) {
+        /* Ponsel (Layar di bawah 600px) */
+        @media (max-width: 600px) {
 
-            .hero-content,
-            .footer-grid {
-                grid-template-columns: 1fr;
+            /* --- NAV RESPONSIVE --- */
+            .nav-mini {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .nav-links a {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+
+            /* --- HERO & HEADER --- */
+            .header-wrapper {
+                padding: 40px 0 70px 0;
+            }
+
+            .header-wrapper::before {
+                font-size: 8rem;
+                /* Lebih kecil agar tidak menutupi teks */
+                bottom: -20px;
             }
 
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .members-grid,
+            .grid {
+                grid-template-columns: 1fr;
             }
 
             .footer-grid {
+                grid-template-columns: 1fr;
                 gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Header -->
     <header class="header-wrapper">
         <div class="container">
             <nav class="nav-mini">
                 <div class="logo-text">KEL.22 <span style="color:white">NGLENCER</span></div>
                 <div class="nav-links">
-                    <a href="index.html">Beranda</a>
+                    <a href="../index.html">Beranda</a>
                     <a href="identitas.html">Profil Tim</a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Container -->
     <div class="container">
-        <!-- Halaman 2: Identitas Kelompok -->
         <h1 class="page-title">Identitas Kelompok</h1>
 
         <div class="identity-section">
-            <!-- Pembimbing -->
             <h2 class="section-title">Pembimbing</h2>
             <div class="pembimbing-grid">
                 <div class="member-card pembimbing">
@@ -455,7 +436,6 @@
                 </div>
             </div>
 
-            <!-- Anggota Kelompok -->
             <h2 class="section-title">Anggota Kelompok 22</h2>
             <div class="members-grid">
                 <div class="member-card">
@@ -570,4 +550,5 @@
         </div>
     </footer>
 </body>
+
 </html>

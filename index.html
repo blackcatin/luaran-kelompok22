@@ -329,33 +329,105 @@
         }
 
 
-        /* Tablet */
+        /* --- MEDIA QUERIES (RESPONSIVE) --- */
+
+        /* Tablet (Layar di bawah 1024px) */
         @media (max-width: 1024px) {
-            .grid {
+            .hero-content {
+                grid-template-columns: 1fr;
+                /* Teks & Stats menumpuk vertikal */
+                text-align: center;
+                gap: 30px;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* HP */
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr;
+        /* Mobile Besar (Layar di bawah 768px) */
+        @media (max-width: 768px) {
+            .identity-section {
+                padding: 30px 20px;
+                border-radius: 30px;
+                margin-top: -30px;
+                /* Menyesuaikan tumpukan header */
+            }
+
+            .page-title {
+                margin: 40px 0;
+                font-size: 28px;
             }
         }
 
-        @media (max-width: 992px) {
+        /* Ponsel (Layar di bawah 600px) */
+        @media (max-width: 600px) {
 
-            .hero-content,
-            .footer-grid {
-                grid-template-columns: 1fr;
+            /* --- NAV RESPONSIVE --- */
+            .nav-mini {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
+            }
+
+            .nav-links {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .nav-links a {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+
+            /* --- HERO & HEADER --- */
+            .header-wrapper {
+                padding: 40px 0 70px 0;
+            }
+
+            .header-wrapper::before {
+                font-size: 8rem;
+                bottom: -20px;
             }
 
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .members-grid,
+            .grid {
+                grid-template-columns: 1fr;
             }
 
             .footer-grid {
+                grid-template-columns: 1fr;
                 gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
             }
         }
     </style>
@@ -369,7 +441,7 @@
                 <div class="logo-text">KEL.22 <span style="color:white">NGLENCER</span></div>
                 <div class="nav-links">
                     <a href="#">Beranda</a>
-                    <a href="../code/identitas.html">Profil Tim</a>
+                    <a href="./code/identitas.html">Profil Tim</a>
                 </div>
             </nav>
 
@@ -379,8 +451,10 @@
                     <p>Selamat datang di portal resmi luaran Kelompok 22. Di sini kami merangkum seluruh hasil kerja
                         keras kami selama di Dusun Nglencer, mulai dari karya tulis hingga produk kreatif digital.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/nglencer.vol22?igsh=MTdya29yMmtvNzJwbA=="><i class="fab fa-instagram"></i></a>
-                        <a href="https://youtube.com/@unidagontortv?si=xKhm6myBOrdTRKLS"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/nglencer.vol22?igsh=MTdya29yMmtvNzJwbA=="><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@unidagontortv?si=xKhm6myBOrdTRKLS"><i
+                                class="fab fa-youtube"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
@@ -715,7 +789,7 @@
             </div>
         </section>
 
-        
+
 
         <section>
             <div class="section-label">
@@ -758,7 +832,7 @@
             </div>
         </section>
 
-        
+
         <section>
             <div class="section-label">
                 <i class="fas fa-gavel" style="background: var(--color-hki)"></i>
